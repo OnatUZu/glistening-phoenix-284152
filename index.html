@@ -302,7 +302,7 @@
 
 <body class="text-white">
 
-    <!-- GitHub Repo Link -->
+    
     <a href="https://github.com/OnatUZu/glistening-phoenix-284152" target="_blank" rel="noopener" class="github-link" title="Source code & License">
         <svg viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -311,13 +311,13 @@
     </a>
 
     <div class="game-container">
-        <!-- Title -->
+        
         <h1 class="text-center font-extrabold tracking-tight leading-tight"
         style="background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 40%, #38bdf8 70%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
         ⚗️ Le Chatelier's Principle Game
     </h1>
 
-    <!-- Reaction Selector -->
+    
     <div class="flex justify-center w-full">
         <select id="reactionSelect" class="bg-slate-800/90 rounded-xl px-3 py-2 text-white text-xs sm:text-sm w-full max-w-lg text-center border border-white/10 focus:outline-none focus:border-indigo-400 transition">
             <option value="0"> N₂ + 3H₂ ⇌ 2NH₃ (Exothermic, 4→2 gas)</option>
@@ -328,7 +328,7 @@
         </select>
     </div>
 
-    <!-- Combo & Score -->
+    
     <div class="flex items-center justify-center gap-3 flex-wrap">
         <div id="comboDisplay" class="text-yellow-400 font-bold stats-text opacity-0 transition-opacity duration-300 bg-yellow-400/10 px-3 py-1 rounded-full border border-yellow-400/30">
             🔥 Streak: <span id="comboCount">0</span>
@@ -338,12 +338,12 @@
         </div>
     </div>
 
-    <!-- Progress Bar -->
+
     <div class="w-full max-w-md mx-auto h-2 bg-slate-700/60 rounded-full overflow-hidden border border-white/5">
         <div id="progressFill" class="progress-fill" style="width: 0%;"></div>
     </div>
 
-    <!-- Reaction Vessels Row -->
+    
     <div class="flex items-center justify-center gap-3 sm:gap-5 w-full">
         <!-- LEFT -->
         <div class="flex flex-col items-center gap-1 w-[42%] sm:w-[44%]">
@@ -373,7 +373,7 @@
         <button onclick="increasePressure()" class="game-btn bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm">🔽 Increase Pressure</button>
     </div>
 
-    <!-- Info text -->
+    
     <div id="info" class="text-cyan-400 text-center text-xs sm:text-sm min-h-[20px] font-medium px-2"></div>
 
     <!-- Question Section -->
@@ -385,7 +385,7 @@
         </div>
     </div>
 
-    <!-- Timer & Restart & Rules -->
+    
     <div class="flex items-center justify-center gap-3 flex-wrap">
         <p id="timer" class="text-lg sm:text-xl font-bold tracking-wider transition-colors duration-300 m-0">⏱ 60s</p>
         <button onclick="resetGame()" class="game-btn bg-slate-700 hover:bg-slate-600 text-white text-xs sm:text-sm">🔄 Restart</button>
@@ -393,7 +393,7 @@
     </div>
 </div>
 
-<!-- Rules Modal Overlay -->
+
 <div id="rulesModal" class="modal-overlay">
     <div class="modal-content relative">
         <button id="closeModalBtn" class="modal-close-btn">&times;</button>
@@ -419,12 +419,11 @@
     </div>
 </div>
 
-<!-- Toast Container -->
+
 <div id="toastContainer"></div>
 
 <script>
-    // ─────────────────────────────────────
-    // DOM references
+    
     const leftContainer = document.getElementById("left-container");
     const rightContainer = document.getElementById("right-container");
     const leftCountEl = document.getElementById("leftCount");
@@ -445,8 +444,8 @@
     const closeModalBtn = document.getElementById("closeModalBtn");
     const closeModalBtn2 = document.getElementById("closeModalBtn2");
 
-    // ─────────────────────────────────────
-    // Reactions data
+    
+    
     const reactions = [
         { name: "N₂ + 3H₂ ⇌ 2NH₃", detail: "Exothermic · 4→2 gas", gasLeft: 4, gasRight: 2, exothermic: true, hasGas: true },
         { name: "CaCO₃ ⇌ CaO + CO₂", detail: "Endothermic · 0→1 gas", gasLeft: 0, gasRight: 1, exothermic: false, hasGas: true },
@@ -464,15 +463,6 @@
     let gameActive = true;
     let particlesLeft = [];
     let particlesRight = [];
-
-    // Audio
-    function createSound(url) { const a = new Audio(url); a.volume = 0.4; a.preload = 'auto'; a.addEventListener('error', () => { a.volume = 0; }); return a; }
-    const correctSound = createSound("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-    const wrongSound = createSound("https://www.soundjay.com/buttons/sounds/button-10.mp3");
-    const winSound = createSound("https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
-    const loseSound = createSound("https://www.soundjay.com/misc/sounds/fail-buzzer-02.mp3");
-    const shiftSound = createSound("https://www.soundjay.com/buttons/sounds/button-09.mp3");
-    function playSound(s) { try { s.currentTime = 0; s.play().catch(() => {}); } catch (e) {} }
 
     function showToast(msg, dur = 2200) {
         const t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
