@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Shifting Equilibrium</title>
+    <title>Le Chatelier's Principle Game</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
 
@@ -243,6 +243,55 @@
         }
         .modal-close-btn:hover { color: #fff; }
 
+        /* ── GitHub Link ── */
+        .github-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .github-link:hover {
+            background: rgba(55, 65, 81, 0.8);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.4);
+            transform: scale(1.08);
+        }
+        .github-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .github-link-tooltip {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+        }
+        .github-link:hover .github-link-tooltip {
+            opacity: 1;
+        }
+
         h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); }
         .stats-text { font-size: 0.7rem; }
         @media (min-width: 640px) { .stats-text { font-size: 0.8rem; } }
@@ -252,21 +301,30 @@
 </head>
 
 <body class="text-white">
+
+    <!-- GitHub Repo Link -->
+    <a href="https://github.com/OnatUZu/glistening-phoenix-284152" target="_blank" rel="noopener" class="github-link" title="Source code & License">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        <span class="github-link-tooltip">Source & License</span>
+    </a>
+
     <div class="game-container">
         <!-- Title -->
         <h1 class="text-center font-extrabold tracking-tight leading-tight"
         style="background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 40%, #38bdf8 70%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-        ⚗️ Shifting Equilibrium
+        ⚗️ Le Chatelier's Principle Game
     </h1>
 
     <!-- Reaction Selector -->
     <div class="flex justify-center w-full">
         <select id="reactionSelect" class="bg-slate-800/90 rounded-xl px-3 py-2 text-white text-xs sm:text-sm w-full max-w-lg text-center border border-white/10 focus:outline-none focus:border-indigo-400 transition">
-            <option value="0">    N₂ + 3H₂ ⇌ 2NH₃ (Exothermic, 4→2 gas)</option>
-            <option value="1">    CaCO₃ ⇌ CaO + CO₂ (Endothermic, 0→1 gas)</option>
-            <option value="2">    2NO₂ ⇌ N₂O₄ (Exothermic, 2→1 gas)</option>
-            <option value="3">    CH₄ + 2O₂ → CO₂ + 2H₂O (3=3 gas)</option>
-            <option value="4">    Zn + Cu²⁺ → Zn²⁺ + Cu (No gas)</option>
+            <option value="0">🧪 N₂ + 3H₂ ⇌ 2NH₃ (Exothermic, 4→2 gas)</option>
+            <option value="1">🪨 CaCO₃ ⇌ CaO + CO₂ (Endothermic, 0→1 gas)</option>
+            <option value="2">🟤 2NO₂ ⇌ N₂O₄ (Exothermic, 2→1 gas)</option>
+            <option value="3">🔥 CH₄ + 2O₂ → CO₂ + 2H₂O (3=3 gas)</option>
+            <option value="4">🔩 Zn + Cu²⁺ → Zn²⁺ + Cu (No gas)</option>
         </select>
     </div>
 
@@ -335,28 +393,27 @@
     </div>
 </div>
 
-<!-- Rules Overlay -->
+<!-- Rules Modal Overlay -->
 <div id="rulesModal" class="modal-overlay">
     <div class="modal-content relative">
         <button id="closeModalBtn" class="modal-close-btn">&times;</button>
-        <h2 class="text-2xl font-bold mb-3 text-purple-300"> How to Play</h2>
+        <h2 class="text-2xl font-bold mb-3 text-purple-300">📘 How to Play</h2>
         <div class="text-sm space-y-3 text-slate-200">
-            <p><strong>Objective:</strong> Answer questions correctly to shift the equilibrium toward products (right side) and reach <span class="text-green-400 font-bold">10 points</span> before time runs out!</p>
+            <p><strong>🎯 Objective:</strong> Answer questions correctly to shift the equilibrium toward products (right side) and reach <span class="text-green-400 font-bold">10 points</span> before time runs out!</p>
             
-            <p><strong> The Setup:</strong> The two containers show reactant (left) and product (right) particles. Each correct answer moves particles right; wrong answers move them left. You win when your score hits 10.</p>
+            <p><strong>⚖️ The Setup:</strong> The two containers show reactant (left) and product (right) particles. Each correct answer moves particles right; wrong answers move them left. You win when your score hits 10.</p>
 
-            <p><strong> The Three Action Buttons:</strong> These let you <em>apply a stress</em> to the system, just like in Le Chatelier's Principle. They shift particles but <strong>do not change your score</strong> — they're for learning and strategy.</p>
+            <p><strong>🧪 The Three Action Buttons:</strong> These let you <em>apply a stress</em> to the system, just like in Le Chatelier's Principle. They shift particles but <strong>do not change your score</strong> — they're for learning and strategy.</p>
             
             <ul class="list-disc list-inside ml-2 space-y-1">
-                <li><span class="font-semibold text-indigo-300"> Add Reactant:</span> Adds more reactant, so the equilibrium shifts <strong>right</strong> (toward products) to use up the extra reactant.</li>
-                <li><span class="font-semibold text-red-300"> Increase Temp:</span> If the reaction is <strong>exothermic</strong> (heat is a product), it shifts <strong>left</strong>. If <strong>endothermic</strong> (heat is a reactant), it shifts <strong>right</strong>.</li>
-                <li><span class="font-semibold text-blue-300"> Increase Pressure:</span> Shifts the equilibrium toward the side with <strong>fewer gas molecules</strong>. If both sides have equal gas moles (or no gases), there's no shift.</li>
+                <li><span class="font-semibold text-indigo-300">➕ Add Reactant:</span> Adds more reactant, so the equilibrium shifts <strong>right</strong> (toward products) to use up the extra reactant.</li>
+                <li><span class="font-semibold text-red-300">🌡️ Increase Temp:</span> If the reaction is <strong>exothermic</strong> (heat is a product), it shifts <strong>left</strong>. If <strong>endothermic</strong> (heat is a reactant), it shifts <strong>right</strong>.</li>
+                <li><span class="font-semibold text-blue-300">🔽 Increase Pressure:</span> Shifts the equilibrium toward the side with <strong>fewer gas molecules</strong>. If both sides have equal gas moles (or no gases), there's no shift.</li>
             </ul>
 
-            <p><strong> Answering Questions:</strong> Each question tests your knowledge. Choose A (right) or B (left). A correct answer shifts particles right and adds points (streaks give bonuses). A wrong answer shifts left and can reduce your score.</p>
+            <p><strong>❓ Answering Questions:</strong> Each question tests your knowledge. Choose A or B. A correct answer shifts particles right and adds points (streaks give bonuses!). A wrong answer shifts left and can reduce your score.</p>
             
-            <p><strong>Tip:</strong> Use the action buttons to see the principle in action, but only correct answers increase your score. Watch the timer. Press <strong>R</strong> to restart, or use keys <strong>1/2/3</strong> for actions, <strong>A/B</strong> to answer.</p>
-            
+            <p><strong>🧠 Pro Tip:</strong> Use the action buttons to see the principle in action, but only correct answers increase your score. Watch the timer! Press <strong>R</strong> to restart, or use keys <strong>1/2/3</strong> for actions, <strong>A/B</strong> to answer.</p>
         </div>
         <button id="closeModalBtn2" class="game-btn bg-purple-600 hover:bg-purple-500 text-white w-full mt-4">Got it!</button>
     </div>
@@ -366,7 +423,7 @@
 <div id="toastContainer"></div>
 
 <script>
-
+    // ─────────────────────────────────────
     // DOM references
     const leftContainer = document.getElementById("left-container");
     const rightContainer = document.getElementById("right-container");
@@ -408,7 +465,7 @@
     let particlesLeft = [];
     let particlesRight = [];
 
-    // Audio, not functional
+    // Audio
     function createSound(url) { const a = new Audio(url); a.volume = 0.4; a.preload = 'auto'; a.addEventListener('error', () => { a.volume = 0; }); return a; }
     const correctSound = createSound("https://www.soundjay.com/buttons/sounds/button-3.mp3");
     const wrongSound = createSound("https://www.soundjay.com/buttons/sounds/button-10.mp3");
@@ -634,7 +691,7 @@
 
     // Global keyboard (game controls)
     window.addEventListener('keydown', (e) => {
-        if (rulesModal.classList.contains('active')) return; 
+        if (rulesModal.classList.contains('active')) return;
         if (!gameActive) return;
         if (e.key.toLowerCase() === 'a') answer(true);
         else if (e.key.toLowerCase() === 'b') answer(false);
